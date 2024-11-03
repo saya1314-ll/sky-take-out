@@ -12,4 +12,6 @@ public interface EmployeeService {
      */
     Employee login(EmployeeLoginDTO employeeLoginDTO);
 
+//    新增员工业务方法
+    void save(Employee employeeDto);
 }
