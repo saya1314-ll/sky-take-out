@@ -6,6 +6,7 @@ import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
+import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
@@ -111,6 +112,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 //                                .id(id)
 //                                        .build();
         employeeMapper.update(employee);
+    }
+
+    //根据id查询员工信息
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        employee.setPassword("******");
+        return employee;
+
+    }
+
+    //编辑员工信息
+    @Override
+    public void update(EmployeeDTO employeeDto) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto,employee);//对象属性拷贝
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());//BaseContext中通过拦截器的处理获取jwt编码中的username
+        employeeMapper.update(employee);//利用启用禁用员工账号的update()
     }
 
 }
