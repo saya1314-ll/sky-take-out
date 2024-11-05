@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 //    新增员工方法
     @Override
-    public void save(Employee employeeDto) {
+    public void save(EmployeeDTO employeeDto) {
         System.out.println("当前线程的id:"+Thread.currentThread().getId());
         Employee employee =new Employee();
         //对象属性拷贝
@@ -95,8 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> page= employeeMapper.pageQuery(employeePageQueryDTO);
         long total = page.getTotal();
         List<Employee> records = page.getResult();
-
-        return new PageResult(total,records);
+        return new PageResult(total,records);//total为总记录数,records为当前页面的记录数(category)的集合
     }
 
 //    启用禁用员工账号

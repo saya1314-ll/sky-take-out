@@ -80,7 +80,7 @@ public class EmployeeController {
 //    新增员工功能
 @PostMapping
 @ApiOperation("新增员工")
-    public Result save(@RequestBody Employee employeeDto) {
+    public Result save(@RequestBody EmployeeDTO employeeDto) {
         log.info("新增员工:{} ", employeeDto);
         System.out.println("当前线程的id:"+Thread.currentThread().getId());
         employeeService.save(employeeDto);
