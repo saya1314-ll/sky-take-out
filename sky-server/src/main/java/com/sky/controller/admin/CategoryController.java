@@ -21,6 +21,7 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
     //修改分类
     @PutMapping
     @ApiOperation("修改分类")
@@ -31,6 +32,7 @@ public class CategoryController {
     }
 
 
+    //分类分页查询
     @GetMapping("/page")
     @ApiOperation("分类分页查询")
 public Result<PageResult> page(CategoryPageQueryDTO categoryPageQueryDTO) {
@@ -50,6 +52,8 @@ public Result<PageResult> page(CategoryPageQueryDTO categoryPageQueryDTO) {
         return Result.success();
     }
 
+
+    //新增分类
     @PostMapping
     @ApiOperation("新增分类")
     public Result<String> save(@RequestBody CategoryDTO categoryDTO) {

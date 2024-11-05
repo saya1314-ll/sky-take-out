@@ -35,21 +35,25 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private SetmealMapper setmealMapper;
 
+    //根据类型查询分类
     @Override
     public List<Category> list(Integer type) {
         List<Category> list= categoryMapper.list(type);
         return list;
     }
 
+    //修改分类
     @Override
     public void update(CategoryDTO categoryDTO) {
         Category category = new Category();
         BeanUtils.copyProperties(categoryDTO,category);//对象属性拷贝
-        category.setUpdateTime(LocalDateTime.now());
-        category.setUpdateUser(BaseContext.getCurrentId());//BaseContext中通过拦截器的处理获取jwt编码中的username
+//        category.setUpdateTime(LocalDateTime.now());
+//        category.setUpdateUser(BaseContext.getCurrentId());//BaseContext中通过拦截器的处理获取jwt编码中的username
         categoryMapper.update(category);
     }
 
+
+    //新增分类
     @Override
     public void save(CategoryDTO categoryDTO) {
 //        Category category = new Category();
@@ -68,10 +72,10 @@ public class CategoryServiceImpl implements CategoryService {
         category.setStatus(StatusConstant.DISABLE);
 
         //设置创建时间、修改时间、创建人、修改人
-        category.setCreateTime(LocalDateTime.now());
-        category.setUpdateTime(LocalDateTime.now());
-        category.setCreateUser(BaseContext.getCurrentId());
-        category.setUpdateUser(BaseContext.getCurrentId());
+//        category.setCreateTime(LocalDateTime.now());//像这四部重复度太高可以用aop统一解决
+//        category.setUpdateTime(LocalDateTime.now());
+//        category.setCreateUser(BaseContext.getCurrentId());
+//        category.setUpdateUser(BaseContext.getCurrentId());
 
         categoryMapper.insert(category);
     }

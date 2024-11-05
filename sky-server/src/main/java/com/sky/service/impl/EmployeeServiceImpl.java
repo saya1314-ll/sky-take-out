@@ -80,11 +80,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置默认密码(用jwt加密)
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         //设置创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        //设置该记录创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        //设置该记录创建人id和修改人id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
     }
@@ -127,8 +127,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void update(EmployeeDTO employeeDto) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto,employee);//对象属性拷贝
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());//BaseContext中通过拦截器的处理获取jwt编码中的username
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());//BaseContext中通过拦截器的处理获取jwt编码中的username
         employeeMapper.update(employee);//利用启用禁用员工账号的update()
     }
 
